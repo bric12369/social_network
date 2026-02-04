@@ -21,3 +21,17 @@ def test_create_post(db_connection):
         Post(3, 'Gym', 'Just got a new PB on bench!', 7, 3),
         Post(4, 'New', 'This is a new post', 5, 1)
     ]
+
+def test_find(db_connection):
+    db_connection.seed('seeds/social_network.sql')
+    repository = PostRepository(db_connection)
+    assert repository.find(1) == Post(1, 'WINDY', 'It is windy today.', 3, 1)
+
+def test_delete(db_connection):
+    db_connection.seed('seeds/social_network.sql')
+    repository = PostRepository(db_connection)
+    repository.delete(1)
+    assert repository.all() == [
+        Post(2, 'Football', '2-0 to West Ham!', 5, 2),
+        Post(3, 'Gym', 'Just got a new PB on bench!', 7, 3),
+    ]
