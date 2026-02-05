@@ -1,8 +1,9 @@
 class UserAccount:
-    def __init__(self, id, email, username):
+    def __init__(self, id, email, username, posts = []):
         self.id = id
         self.email = email
         self.username = username
+        self.posts = posts
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
